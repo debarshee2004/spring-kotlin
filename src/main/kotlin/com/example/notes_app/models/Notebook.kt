@@ -19,7 +19,7 @@ import java.time.LocalDateTime
 @Table(name = "notebooks")
 data class Notebook(
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
     @Column(nullable = false)
