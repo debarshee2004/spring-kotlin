@@ -5,6 +5,7 @@ import com.example.notes_app.dto.UpdateUserRequest
 import com.example.notes_app.dto.UserResponse
 import com.example.notes_app.models.User
 import com.example.notes_app.repository.UserRepository
+import com.example.notes_app.utitls.PasswordUtil
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
@@ -19,12 +20,10 @@ class UserService(private val userRepository: UserRepository) {
             throw IllegalArgumentException("Email already exists")
         }
 
-        /* TODO: Hash the password before saving it into the database */
-
         val user = User(
             username = request.username,
             email = request.email,
-            password = request.password,
+            password = PasswordUtil.hashPassword(request.password),
             firstName = request.firstName,
             lastName = request.lastName
         )
